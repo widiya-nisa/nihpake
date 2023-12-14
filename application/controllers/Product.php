@@ -49,8 +49,6 @@ class Product extends CI_Controller {
 	public function createProduct()
 	{
 		cek_login();
-
-
 		$this->load->view('admin/templates-admin/header');
 		$this->load->view('admin/templates-admin/sidebar');
 		$this->load->view('admin/product-admin/create');
@@ -85,5 +83,60 @@ class Product extends CI_Controller {
             // Redirect atau tampilkan pesan sukses
             redirect('product/listProduct'); // Ganti 'product/list' dengan halaman yang sesuai
         }
+    }
+
+    public function edit($product_id) {
+        // Ambil data produk dari model berdasarkan ID
+        $data['product'] = $this->product_model->getProductById($product_id);
+
+        cek_login();
+		$this->load->view('admin/templates-admin/header');
+		$this->load->view('admin/templates-admin/sidebar');
+		$this->load->view('admin/product-admin/edit', $data);
+		$this->load->view('admin/templates-admin/footer');
+    }
+
+    public function update($product_id) {
+        // Atur aturan validasi
+        $this->form_validation->set_rules('name', 'Nama Produk', 'required');
+        $this->form_validation->set_rules('price', 'Harga', 'required|numeric');
+        $this->form_validation->set_rules('description', 'Deskripsi', 'required');
+        $this->form_validation->set_rules('type', 'Tipe', 'required');
+        $this->form_validation->set_rules('quantity', 'Jumlah', 'required|numeric');
+        // Tambahkan aturan validasi lainnya sesuai kebutuhan
+    
+        // Jalankan validasi
+        if ($this->form_validation->run() === FALSE) {
+            // Jika validasi gagal, kembali ke halaman edit dengan pesan error
+            $this->session->set_flashdata('error', validation_errors());
+            redirect('product/edit/' . $product_id);
+        } else {
+            // Jika validasi sukses, update data produk
+            $data = array(
+                'name' => $this->input->post('name'),
+                'price' => $this->input->post('price'),
+                'description' => $this->input->post('description'),
+                'type' => $this->input->post('type'),
+                'quantity' => $this->input->post('quantity')
+                // Tambahkan kolom lain sesuai kebutuhan
+            );
+    
+            // Panggil method pada model untuk melakukan update
+            $this->product_model->update_product($product_id, $data);
+    
+            // Set notifikasi berhasil
+            $this->session->set_flashdata('success', 'Produk berhasil diperbarui.');
+    
+            // Redirect kembali ke halaman daftar produk atau halaman lain yang diinginkan
+            redirect('product/listProduct');
+        }
+    }
+
+    public function delete($product_id) {
+        // Panggil method pada model untuk menghapus produk
+        $this->product_model->delete_product($product_id);
+
+        // Redirect kembali ke halaman daftar produk atau halaman lain yang diinginkan
+        redirect('product/listProduct');
     }
 }

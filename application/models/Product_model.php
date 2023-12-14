@@ -5,10 +5,7 @@ class Product_model extends CI_Model {
         $this->db->insert('products', $data);
     }
     
-    public function get_products() {
-        $query = $this->db->get('products');
-        return $query->result();
-    }
+   
 
     public function getProducts() {
         // Mengambil data produk dari database
@@ -41,5 +38,12 @@ class Product_model extends CI_Model {
         $product->galleries = $this->getProductGalleries($product_id);
     
         return $product;
+    }
+
+
+    public function delete_product($product_id) {
+        // Hapus produk dari database berdasarkan product_id
+        $this->db->where('id', $product_id);
+        $this->db->delete('products');
     }
 }

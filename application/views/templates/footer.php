@@ -5,7 +5,10 @@
                 <div class="col-lg-5">
                     <div class="footer-left">
                         <div class="footer-logo">
-                            <a href="#"><img src="<?= base_url('assets/vendor/img/logo_website_shayna_white.png') ?>" alt="" /></a>
+                        <a href="<?= base_url() ?>">
+                                <img src="<?= base_url('assets/vendor/img/logo2.png') ?>" height="50" alt="" />
+                            <span> NihPake</span> 
+                            </a>
                         </div>
                         <ul>
                             <li>Address: Senen, Jakarta</li>

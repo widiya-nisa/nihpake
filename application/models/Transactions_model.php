@@ -13,4 +13,5 @@ class Transactions_model extends CI_Model {
         // Kembalikan hasil query dalam bentuk array objek
         return $query->result();
     }
+    
 }

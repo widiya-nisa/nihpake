@@ -62,7 +62,7 @@
                             <?php endif; ?>
                                 <ul>
                                     
-                                    <li class="quick-view"><a href="product.html">+ See Detail</a></li>
+                                    <li class="quick-view"><a href="<?= base_url('product/detail/'. $product->id) ?>">+ See Detail</a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">

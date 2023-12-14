@@ -18,9 +18,22 @@
                 <div class="col-md-3 col-sm-12">
                     <div class="product-item">
                         <div class="pi-pic">
-                            <!-- Menampilkan gambar pertama dari productGalleries -->
-                                <img src="<?= base_url($product->galleries[0]->photo) ?>" alt="" />
+                        <?php
+                            $defaultGallery = null;
 
+                            // Cari galeri yang memiliki is_default = 1
+                            foreach ($product->galleries as $gallery) {
+                                if ($gallery->is_default == 1) {
+                                    $defaultGallery = $gallery;
+                                    break;
+                                }
+                            }
+
+                            // Jika ditemukan galeri yang is_default, tampilkan gambarnya
+                            if ($defaultGallery !== null) : ?>
+                            <!-- Menampilkan gambar pertama dari productGalleries -->
+                                <img src="<?= base_url($defaultGallery->photo) ?>" alt="" />
+                                <?php endif; ?>
                             <ul>
                                 <li class="quick-view"><a href="<?= base_url('product/detail/' . $product->id) ?>">+ See Detail</a></li>
                             </ul>
@@ -31,7 +44,7 @@
                                 <h5><?= $product->name ?></h5>
                             </a>
                             <div class="product-price">
-                                <?= '$' . $product->price ?>
+                                <?= 'Rp.' . $product->price ?>
                                 <span></span>
                             </div>
                         </div>

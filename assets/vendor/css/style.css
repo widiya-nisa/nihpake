@@ -426,10 +426,13 @@ ol {
 
 .inner-header .logo {
     padding: 12px 0;
+    display: flex;
 }
 
 .inner-header .logo a {
-    display: inline-block;
+    display: flex;
+    font-size: 40px;
+    color: #000;
 }
 
 .inner-header .advanced-search {
@@ -1535,7 +1538,9 @@ ol {
 }
 
 .footer-left .footer-logo a {
-    display: inline-block;
+    display: flex;
+    color: #fff;
+    font-size: 20px;
 }
 
 .footer-left ul li {

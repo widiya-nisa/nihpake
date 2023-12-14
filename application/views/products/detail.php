@@ -54,10 +54,10 @@
                             </div>
                             <div class="pd-desc">
                                 <p><?= $products->description ?></p>
-                                <h4>$<?= $products->price ?></h4>
+                                <h4>RP.<?= $products->price ?></h4>
                             </div>
                             <div class="quantity">
-                                <a href="<?= base_url('checkout/index') ?>" class="primary-btn pd-cart">Add To Cart</a>
+                                <a href="<?= base_url('checkout/index') ?>" class="primary-btn pd-cart">Beli Produk</a>
                             </div>
                         </div>
                     </div>

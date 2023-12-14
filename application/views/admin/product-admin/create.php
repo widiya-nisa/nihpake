@@ -2,7 +2,7 @@
     <div class="row">
     <div class="col-lg-12">
     <div class="card">
-        <div class="card-header"><strong>Tambah Gambar</strong></div>
+        <div class="card-header"><strong>Tambah Produk</strong></div>
         <div class="card-body card-block">
           <form action="<?= base_url('product/add_product') ?>" method="post" >
           <?php echo validation_errors(); ?>

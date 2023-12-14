@@ -48,12 +48,14 @@
         </div>
         <div class="container">
             <div class="inner-header">
-                <div class="row">
+                <div class="row d-flex">
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
                             <a href="<?= base_url() ?>">
-                                <img src="<?= base_url('assets/vendor/img/logo_website_shayna.png') ?>" alt="" />
+                                <img src="<?= base_url('assets/vendor/img/logo2.png') ?>" height="50" alt="" />
+                            <span> NihPake</span> 
                             </a>
+
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-7"></div>
