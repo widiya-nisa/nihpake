@@ -57,17 +57,14 @@
                                 <h4>RP.<?= $products->price ?></h4>
                             </div>
                             <div class="quantity">
-                                <a href="<?= base_url('checkout/index') ?>" class="primary-btn pd-cart">Beli Produk</a>
+                                <a href="<?= base_url('transactions/checkout/'.  $products->id) ?>" class="primary-btn pd-cart">Beli Produk</a>
                             </div>
                         </div>
                     </div>
-                    <!-- ... (lanjutan kode) ... -->
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- Product Shop Section End -->
-    <!-- Product Shop Section End -->
 
     

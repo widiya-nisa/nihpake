@@ -36,7 +36,7 @@ class Product extends CI_Controller {
 	{
 		cek_login();
 
-		$data['products'] = $this->product_model->get_products();
+		$data['products'] = $this->product_model->getProducts();
 
 
 		$this->load->view('admin/templates-admin/header');

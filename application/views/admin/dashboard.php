@@ -27,7 +27,7 @@
                                     </div>
                                     <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text">Rp. <span class="count">123901212</span></div>
+                                            <div class="stat-text">Rp. <span class="count"><?php echo $totalTransactionAmount; ?></span></div>
                                             <div class="stat-heading">Penghasilan</div>
                                         </div>
                                     </div>
@@ -45,8 +45,8 @@
                                     </div>
                                     <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text"><span class="count">3435</span></div>
-                                            <div class="stat-heading">Penjualan</div>
+                                            <div class="stat-text"><span class="count"><?=$totalTransactionCount?></span></div>
+                                            <div class="stat-heading">Transaksi</div>
                                         </div>
                                     </div>
                                 </div>
@@ -61,89 +61,46 @@
                 <div class="orders">
                     <div class="row">
                         <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="box-title">Transaksi Terbaru </h4>
-                                </div>
-                                <div class="card-body--">
-                                    <div class="table-stats order-table ov-h">
-                                        <table class="table ">
-                                            <thead>
-                                                <tr>
-                                                    <th class="serial">ID</th>
-                                                    <th>Kode</th>
-                                                    <th>Name</th>
-                                                    <th>Product</th>
-                                                    <th>Quantity</th>
-                                                    <th>Status</th> 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="serial">1.</td>
-                                                    <td> #5469 </td>
-                                                    <td>  <span class="name">Louis Stanley</span> </td>
-                                                    <td> <span class="product">Uniqlo</span> </td>
-                                                    <td><span class="count">1</span></td>
-                                                    <td>
-                                                        <span class="badge badge-complete">Complete</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="serial">2.</td>
-                                                    <td> #5468 </td>
-                                                    <td>  <span class="name">Gregory Dixon</span> </td>
-                                                    <td> <span class="product">ZARA</span> </td>
-                                                    <td><span class="count">1</span></td>
-                                                    <td>
-                                                        <span class="badge badge-complete">Complete</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="serial">3.</td>
-                                                    <td> #5467 </td>
-                                                    <td>  <span class="name">Catherine Dixon</span> </td>
-                                                    <td> <span class="product">H&M</span> </td>
-                                                    <td><span class="count">1</span></td>
-                                                    <td>
-                                                        <span class="badge badge-complete">Complete</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="serial">4.</td>
-                                                    <td> #5466 </td>
-                                                    <td>  <span class="name">Mary Silva</span> </td>
-                                                    <td> <span class="product">Pull&Bear</span> </td>
-                                                    <td><span class="count">1</span></td>
-                                                    <td>
-                                                        <span class="badge badge-pending">Pending</span>
-                                                    </td>
-                                                </tr>
-                                                <tr class=" pb-0">
-                                                    <td class="serial">5.</td>
-                                                    <td> #5465 </td>
-                                                    <td>  <span class="name">Johnny Stephens</span> </td>
-                                                    <td> <span class="product">Bershka</span> </td>
-                                                    <td><span class="count">1</span></td>
-                                                    <td>
-                                                        <span class="badge badge-complete">Complete</span>
-                                                    </td>
-                                                </tr>
-                                                <tr class=" pb-0">
-                                                    <td class="serial">5.</td>
-                                                    <td> #5466 </td>
-                                                    <td>  <span class="name">Kim Ratchet</span> </td>
-                                                    <td> <span class="product">Nama</span> </td>
-                                                    <td><span class="count">1</span></td>
-                                                    <td>
-                                                        <span class="badge badge-complete">Complete</span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div> <!-- /.table-stats -->
-                                </div>
-                            </div> <!-- /.card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Data Table</strong>
+                            </div>
+                            <div class="card-body">
+                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>produk</th>
+            <th>Email</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Action</th>
+
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($transactions as $index => $transaction): ?>
+            <tr>
+                <td><?php echo $transaction->id; ?></td>
+                <td><?php echo $transaction->name; ?></td>
+                <td><?php echo $transaction->product_name ?></td>
+                <td><?php echo $transaction->email; ?></td>
+                <td><?php echo $transaction->transaction_total; ?></td>
+                <td><?php echo $transaction->transaction_status; ?></td>
+                <td>
+                <a type="button" href="<?=base_url('transactions/listTransactions') ?>" class="btn btn-info btn-sm">
+                    Detail
+    </a>
+                </td>
+
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> <!-- /.card -->
                         </div>  <!-- /.col-lg-8 -->
                     </div>
                 </div>

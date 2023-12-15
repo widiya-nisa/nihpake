@@ -29,36 +29,35 @@
                                             <th>Image</th>
                                             <th class="p-name text-center">Product Name</th>
                                             <th>Price</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="cart-pic first-row">
-                                                <img src="<?= base_url('assets/vendor/img/cart-page/product-1.jpg') ?>" />
+                                        <?php
+                                    $defaultGallery = null;
+
+                                        // Cari galeri yang memiliki is_default = 1
+                                        foreach ($products->galleries as $gallery) {
+                                            if ($gallery->is_default == 1) {
+                                                $defaultGallery = $gallery;
+                                                break;
+                                            }
+                                        }
+
+                                        // Jika ditemukan galeri yang is_default, tampilkan gambarnya
+                                        if ($defaultGallery !== null) : ?>
+                                            <td class="-pic first-row">
+                                                <img src="<?= base_url($defaultGallery->photo) ?>" height="150px" />
+                                        <?php endif; ?>
+
                                             </td>
-                                            <td class="cart-title first-row text-center">
-                                                <h5>Pure Pineapple</h5>
+                                            <td class="-title first-row text-center">
+                                                <h5><?php echo $products->name; ?></h5>
                                             </td>
-                                            <td class="p-price first-row">$60.00</td>
-                                            <td class="delete-item"><a href="#"><i class="material-icons">
-                                              close
-                                              </i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="cart-pic first-row">
-                                                <img src="<?= base_url('assets/vendor/img/cart-page/product-1.jpg') ?>" />
-                                            </td>
-                                            <td class="cart-title first-row text-center">
-                                                <h5>Pure Pineapple</h5>
-                                            </td>
-                                            <td class="p-price first-row">$60.00</td>
-                                            <td class="delete-item"><a href="#"><i class="material-icons">
-                                              close
-                                              </i></a></td>
+                                            <td class="p-price first-row">Rp.<?php echo $products->price; ?></td>
                                         </tr>
                                     </tbody>
-                                </table>
+                                </table> 
                             </div>
                         </div>
                         <div class="col-lg-8">
@@ -66,24 +65,28 @@
                                 Informasi Pembeli:
                             </h4>
                             <div class="user-checkout">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="namaLengkap">Nama lengkap</label>
-                                        <input type="text" class="form-control" id="namaLengkap" aria-describedby="namaHelp" placeholder="Masukan Nama">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="namaLengkap">Email Address</label>
-                                        <input type="email" class="form-control" id="emailAddress" aria-describedby="emailHelp" placeholder="Masukan Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="namaLengkap">No. HP</label>
-                                        <input type="text" class="form-control" id="noHP" aria-describedby="noHPHelp" placeholder="Masukan No. HP">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="alamatLengkap">Alamat Lengkap</label>
-                                        <textarea class="form-control" id="alamatLengkap" rows="3"></textarea>
-                                    </div>
-                                </form>
+                            <form action="<?= base_url('transactions/createTransaction') ?>" method="post">
+                                <div class="form-group">
+                                    <label for="name">Nama lengkap</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Masukan Nama" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Masukan Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="number">No. HP</label>
+                                    <input type="text" class="form-control" id="number" name="number" placeholder="Masukan No. HP" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Alamat Lengkap</label>
+                                    <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                                </div>
+                                <input type="hidden" name="transaction_total" value="<?= $products->price; ?>">
+                                <input type="hidden" name="product_id" value="<?= $products->id; ?>"> <!-- Sesuaikan dengan cara Anda menghitung total transaksi -->
+                                 <!-- Sesuaikan dengan cara Anda menghitung total transaksi -->
+                                <button type="submit" class="btn btn-block proceed-btn">I Already Paid</button>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -93,15 +96,11 @@
                         <div class="col-lg-12">
                             <div class="proceed-checkout">
                                 <ul>
-                                    <li class="subtotal">ID Transaction <span>#SH12000</span></li>
-                                    <li class="subtotal mt-3">Subtotal <span>$240.00</span></li>
-                                    <li class="subtotal mt-3">Pajak <span>10%</span></li>
-                                    <li class="subtotal mt-3">Total Biaya <span>$440.00</span></li>
+                                    <li class="subtotal mt-3">Total Biaya <span>Rp.<?php echo $products->price; ?></span></li>
                                     <li class="subtotal mt-3">Bank Transfer <span>Mandiri</span></li>
                                     <li class="subtotal mt-3">No. Rekening <span>2208 1996 1403</span></li>
-                                    <li class="subtotal mt-3">Nama Penerima <span>Shayna</span></li>
+                                    <li class="subtotal mt-3">Nama Penerima <span>Widiya</span></li>
                                 </ul>
-                                <a href="<?= base_url('checkout/success') ?>" class="proceed-btn">I ALREADY PAID</a>
                             </div>
                         </div>
                     </div>

@@ -7,6 +7,8 @@ class Home extends CI_Controller {
 	public function __construct() {
         parent::__construct();
         $this->load->model('product_model');
+        $this->load->model('transactions_model');
+
     }
 	public function index()
 	{
@@ -19,4 +21,5 @@ class Home extends CI_Controller {
 		$this->load->view('templates/footer');
 
 	}
+
 }

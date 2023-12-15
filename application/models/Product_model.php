@@ -39,6 +39,11 @@ class Product_model extends CI_Model {
     
         return $product;
     }
+    public function update_product($product_id, $data) {
+        // Lakukan update produk ke database berdasarkan ID
+        $this->db->where('id', $product_id);
+        $this->db->update('products', $data);
+    }
 
 
     public function delete_product($product_id) {
